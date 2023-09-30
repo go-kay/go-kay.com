@@ -36,6 +36,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@supabase/auth-helpers-sveltekit": "^0.10.3",
+    "@supabase/supabase-js": "^2.36.0",
     "autoprefixer": "^10.4.16",
     "drizzle-orm": "^0.28.6",
     "postcss": "^8.4.30",
