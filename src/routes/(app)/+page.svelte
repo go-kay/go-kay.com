@@ -12,30 +12,16 @@
 			});
 		}
 	}
-	function handleSwitchDarkMode() {
-		let darkMode = false;
-		if (localStorage.theme === 'light') {
-			darkMode = true;
-			localStorage.theme = 'dark';
-		} else {
-			localStorage.theme = 'light';
-		}
-
-		darkMode
-			? document.documentElement.classList.add('dark')
-			: document.documentElement.classList.remove('dark');
-	}
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-
-<button on:click={handleSwitchDarkMode}>change</button>
-<h3>
-	Visit
-	<a href="https://kit.svelte.dev"> kit.svelte.dev </a>
-	to read the documentation check
-</h3>
-
-<a href="/sign-in"> Sign In </a>
-
-<button class="bg-primary text-background">hello</button>
+<div>
+	<h1 class="mt-8">TODO:</h1>
+	<div class="flex space-x-4 items-center mt-8">
+		<input type="checkbox" class="scale-150" />
+		<h3>Comunity Page</h3>
+	</div>
+	<div class="flex space-x-4 items-center mt-2">
+		<input type="checkbox" class="scale-150" />
+		<h3>Housing page</h3>
+	</div>
+</div>
