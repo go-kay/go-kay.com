@@ -1,6 +1,6 @@
 import type { Actions } from './$types';
 import type { CountryCode } from '$lib/assets/CountryCodes';
-import { PhoneNumberFormat, PhoneNumberUtil } from 'google-libphonenumber';
+import GoogleLibPhoneNumber from 'google-libphonenumber';
 import db from '$db';
 import { users } from '$db/schema/users';
 import type { NewUser } from '$db/schema/users';
@@ -8,6 +8,8 @@ import moment from 'moment';
 import { fail, redirect } from '@sveltejs/kit';
 import sendVerificationSMS from '$db/api/auth/sendVerificationSMS';
 import verifySmsCode from '$db/api/auth/verifySmsCode';
+
+const { PhoneNumberFormat, PhoneNumberUtil } = GoogleLibPhoneNumber;
 
 export const actions: Actions = {
 	signUp: async ({ request, locals: { getSession } }) => {
