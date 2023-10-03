@@ -19,7 +19,7 @@
 </script>
 
 <div class="flex flex-col h-full justify-center items-center w-80 mx-auto">
-	<h1 class="mb-12 text-primary">GoKay</h1>
+	<h1 class="mb-24 text-primary">GoKay</h1>
 	<EmailLoginForm bind:loading />
 	<div class="flex justify-center my-8 items-center space-x-4 w-full">
 		<div class="flex-1 border-b h-0 border-primary" />

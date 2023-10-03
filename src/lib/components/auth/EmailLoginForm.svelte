@@ -33,9 +33,14 @@
 		{#if isLoading}
 			<Spinner classes="w-6 h-6 border-background absolute m-auto left-0 right-0 top-0 bottom-0" />
 		{:else}
-			<span class="text-background m-auto absolute left-0 right-0 top-0 bottom-0 h-fit">
-				Sign in with Email
-			</span>
+			<div>
+				<i
+					class="fa-solid fa-envelope text-background absolute left-4 top-0 bottom-0 my-auto text-center h-fit"
+				/>
+				<span class="text-background m-auto absolute left-0 right-0 top-0 bottom-0 h-fit">
+					Sign in with email
+				</span>
+			</div>
 		{/if}
 	</button>
 </form>

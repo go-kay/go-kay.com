@@ -17,7 +17,7 @@ export const toast = ({
 	title,
 	description,
 	type = 'success',
-	duration = 3000
+	duration = 5000
 }: {
 	title?: string;
 	description?: string;

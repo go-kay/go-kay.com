@@ -192,6 +192,19 @@ input {
     background-color: var(--background);
     padding: .8rem;
     outline: none;
-    @apply rounded
+    @apply rounded border-primary text-primary
 }
 
+input::placeholder {
+    @apply text-primary-300 dark:text-primary-700
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type='text']{
+    @apply border border-primary h-12
+}

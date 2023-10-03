@@ -1,0 +1,1 @@
+ALTER TABLE "sms_verification_codes" ALTER COLUMN "expire_at" SET DATA TYPE timestamp;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Provider, SupabaseClient } from '@supabase/supabase-js';
 	import Spinner from '$lib/components/spinner/Spinner.svelte';
-	import { signInWithOAuth } from '$db/schema/users';
+	import { signInWithOAuth } from '$db/api';
 	export let provider: Provider,
 		loading: string | undefined = undefined,
 		supabase: SupabaseClient;

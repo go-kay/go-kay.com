@@ -1,72 +1,36 @@
-import { date, pgTable, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
-import type { Provider, SupabaseClient } from '@supabase/supabase-js';
-import { PUBLIC_REDIRECT_URI } from '$env/static/public';
+import { boolean, char, date, pgTable, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
 	id: uuid('id').primaryKey(),
 	firstName: varchar('first_name', {
 		length: 48
-	}),
+	}).notNull(),
 	lastName: varchar('last_name', {
 		length: 48
-	}),
+	}).notNull(),
 	email: varchar('email', {
 		length: 80
 	}),
+	avatarUrl: varchar('avatar_url', {
+		length: 255
+	}),
+	gender: varchar('gender').notNull(),
 	phone: varchar('phone', {
 		length: 24
-	}),
-	birthday: date('birthday'),
+	})
+		.unique()
+		.notNull(),
+	country: varchar('country', {
+		length: 48
+	}).notNull(),
+	countryCode: char('country_code', {
+		length: 2
+	}).notNull(),
+	birthday: date('birthday').notNull(),
 	createdAt: timestamp('created_at').defaultNow(),
-	updatedAt: timestamp('updated_at')
+	updatedAt: timestamp('updated_at'),
+	isDeleted: boolean('is_deleted').default(false)
 });
 
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
-
-export async function signInWithEmail({
-	supabase,
-	email
-}: {
-	supabase: SupabaseClient;
-	email: string;
-}) {
-	await supabase.auth.signInWithOtp({
-		email,
-		options: {
-			emailRedirectTo: PUBLIC_REDIRECT_URI
-		}
-	});
-}
-
-export async function signInWithOAuth({
-	supabase,
-	provider
-}: {
-	supabase: SupabaseClient;
-	provider: Provider;
-}) {
-	if (provider === 'google') {
-		await supabase.auth.signInWithOAuth({
-			provider,
-			options: {
-				redirectTo: PUBLIC_REDIRECT_URI,
-				queryParams: {
-					access_type: 'offline',
-					prompt: 'consent'
-				}
-			}
-		});
-	} else {
-		await supabase.auth.signInWithOAuth({
-			provider,
-			options: {
-				redirectTo: PUBLIC_REDIRECT_URI
-			}
-		});
-	}
-}
-
-export function validateEmail(email: string) {
-	return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
-}
