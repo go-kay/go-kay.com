@@ -101,5 +101,9 @@
 </div>
 
 {#if verificationCodeSent}
-	<PhoneVerification bind:verified />
+	<PhoneVerification
+		bind:verified
+		{phone}
+		countryPhone={typeof country !== 'string' ? country.phone[0] : ''}
+	/>
 {/if}

@@ -1,19 +1,12 @@
-import db from '$db';
-import { smsVerificationCodes } from '$db/schema/sms_verification_codes';
-import { and, eq, gt } from 'drizzle-orm';
+import twilio from '$lib/utils/twilio';
+import { TWILIO_SERVICE_SID } from '$env/static/private';
 
-const verifySmsCode = async ({ code, userId }: { code: string; userId: string }) => {
-	const { rowCount } = await db
-		.delete(smsVerificationCodes)
-		.where(
-			and(
-				eq(smsVerificationCodes.code, code),
-				eq(smsVerificationCodes.userId, userId),
-				gt(smsVerificationCodes.expireAt, new Date())
-			)
-		);
-
-	return rowCount > 0;
+const verifySmsCode = async ({ code, phone }: { code: string; phone: string }) => {
+	const result = await twilio.verify.v2.services(TWILIO_SERVICE_SID).verificationChecks.create({
+		to: phone,
+		code
+	});
+	return result.status === 'approved';
 };
 
 export default verifySmsCode;

@@ -3,7 +3,7 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { toast } from '$lib/components/toast/toast';
 
-	export let verified: boolean;
+	export let verified: boolean, phone: string, countryPhone: string;
 	let code: string;
 	const handleSubmit: SubmitFunction = ({ cancel }) => {
 		if (!code) {
@@ -62,5 +62,7 @@
 				Verify
 			{/if}
 		</button>
+		<input type="text" name="phone" value={phone} class="hidden" />
+		<input type="text" name="countryPhone" value={countryPhone} class="hidden" />
 	</div>
 </form>

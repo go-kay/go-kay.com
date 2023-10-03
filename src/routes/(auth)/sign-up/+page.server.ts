@@ -57,11 +57,7 @@ export const actions: Actions = {
 
 		throw redirect(302, '/?success=true');
 	},
-	sendVerifySms: async ({ request, locals: { getSession } }) => {
-		const {
-			user: { id }
-		} = await getSession();
-
+	sendVerifySms: async ({ request }) => {
 		const data = await request.formData();
 		const countryPhone = data.get('countryPhone') as string;
 		const inputPhoneNumber = (countryPhone + data.get('phone')) as string;
@@ -73,19 +69,25 @@ export const actions: Actions = {
 		}
 		const number = phoneUtil.parseAndKeepRawInput(inputPhoneNumber);
 		const phone = phoneUtil.format(number, PhoneNumberFormat.E164);
-		await sendVerificationSMS({ userId: id, phone });
+		await sendVerificationSMS({ phone });
 		return {
 			message: 'Verification code was sent to your phone.'
 		};
 	},
-	verify: async ({ request, locals: { getSession } }) => {
-		const {
-			user: { id }
-		} = await getSession();
-
+	verify: async ({ request }) => {
 		const data = await request.formData();
 		const code = data.get('code') as string;
-		if (await verifySmsCode({ code, userId: id })) {
+		const countryPhone = data.get('countryPhone') as string;
+		const inputPhoneNumber = (countryPhone + data.get('phone')) as string;
+		const phoneUtil = PhoneNumberUtil.getInstance();
+		if (!phoneUtil.isPossibleNumberString(inputPhoneNumber, countryPhone)) {
+			return fail(400, {
+				message: 'Phone number is invalid.'
+			});
+		}
+		const number = phoneUtil.parseAndKeepRawInput(inputPhoneNumber);
+		const phone = phoneUtil.format(number, PhoneNumberFormat.E164);
+		if (await verifySmsCode({ code, phone })) {
 			return {
 				message: 'Your phone is verified!'
 			};
