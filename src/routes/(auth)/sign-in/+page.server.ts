@@ -1,6 +1,6 @@
 import type { Actions } from '@sveltejs/kit';
-import { validateEmail } from '$lib/utils';
 import { signInWithEmail } from '$db/api';
+import validateEmail from '$lib/utils/validateEmail';
 
 export const actions: Actions = {
 	email: async ({ request, locals: { supabase } }) => {

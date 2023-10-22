@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ActionData, PageData } from './$types';
-	import { SocialLoginButton } from '$lib/components';
+	import SocialLoginButton from '$lib/components/auth/SocialLoginButton.svelte';
 	import { toast } from '$lib/components/toast/toast';
 	import EmailLoginForm from '$lib/components/auth/EmailLoginForm.svelte';
 

@@ -19,7 +19,7 @@
 	}}
 >
 	{#if isLoading}
-		<Spinner classes="w-6 h-6 border-primary absolute m-auto left-0 right-0 top-0 bottom-0" />
+		<Spinner classes="!border-primary" />
 	{:else}
 		<div>
 			<i

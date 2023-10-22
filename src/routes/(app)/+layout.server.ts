@@ -1,14 +1,17 @@
 import type { LayoutServerLoad } from './$types';
-import { redirect } from '@sveltejs/kit';
-import getUser from '$db/api/users/getUser';
+import db from '$db';
+import { users } from '$db/schema';
+import type { User } from '$db/schema';
+import { eq } from 'drizzle-orm';
 
 export const load: LayoutServerLoad = async ({ locals: { getSession } }) => {
 	const session = await getSession();
-	if (!session) {
-		throw redirect(302, '/sign-in');
-	}
-
-	if (!(await getUser({ id: session.user.id }))) {
-		throw redirect(302, '/sign-up');
+	if (session) {
+		const selectUser = await db.select().from(users).where(eq(users.id, session.user.id));
+		if (selectUser.length > 0) {
+			return {
+				user: selectUser[0] as User
+			};
+		}
 	}
 };

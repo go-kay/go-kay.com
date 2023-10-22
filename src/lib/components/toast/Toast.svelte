@@ -3,7 +3,7 @@
 	import { fly } from 'svelte/transition';
 </script>
 
-<div role="alert" class="fixed top-16 right-4 flex flex-col space-y-2">
+<div role="alert" class="fixed top-16 right-4 flex flex-col space-y-2 z-50">
 	{#each $toasts as toast}
 		<div
 			in:fly={{ x: 8, duration: 400 }}

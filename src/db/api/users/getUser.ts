@@ -1,6 +1,6 @@
 import db from '$db';
-import { users } from '$db/schema/users';
-import type { User } from '$db/schema/users';
+import { users } from '$db/schema';
+import type { User } from '$db/schema';
 import { eq } from 'drizzle-orm';
 
 export default async function getUser({ id }: { id: string }): Promise<User | null> {

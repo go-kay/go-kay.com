@@ -1,27 +1,31 @@
-<script>
-	function handleSwitchDarkMode() {
-		let darkMode = false;
-		if (localStorage.theme === 'light') {
-			darkMode = true;
-			localStorage.theme = 'dark';
-		} else {
-			localStorage.theme = 'light';
-		}
+<script lang="ts">
+	import AppBar from '$lib/components/layout/AppBar.svelte';
+	import SideBarMain from '$lib/components/layout/SideBarMain.svelte';
+	import SideBarSub from '$lib/components/layout/SideBarSub.svelte';
+	import CreateTopicSlideOver from '$lib/components/topic/CreateTopicSlideOver.svelte';
+	import { homeStore } from '$store/home';
 
-		darkMode
-			? document.documentElement.classList.add('dark')
-			: document.documentElement.classList.remove('dark');
+	import type { LayoutData } from './$types';
+	export let data: LayoutData;
+
+	let { user } = data;
+
+	$: {
+		({ user } = data);
 	}
 </script>
 
-<nav class="fixed w-screen bg-background border-b">
-	<div class="max-w-[800px] mx-auto flex h-12 px-8 items-center justify-between">
-		<h6>GoKay</h6>
-		<button on:click={handleSwitchDarkMode}>
-			<i class="fa fa-lightbulb dark:text-yellow-300" />
-		</button>
-	</div>
-</nav>
-<div class="pt-16 px-8 max-w-[800px] mx-auto">
-	<slot />
+<div class="flex flex-col h-screen">
+	<AppBar />
+	<main class="flex h-[calc(100vh-48px)]">
+		<aside class="hidden sm:flex">
+			<SideBarMain />
+			<SideBarSub {user} />
+		</aside>
+		<section class="px-4 sm:px-16 max-w-7xl mx-auto w-full overflow-y-scroll h-full max-h-full">
+			<slot />
+		</section>
+	</main>
 </div>
+
+<CreateTopicSlideOver open={$homeStore.createTopic} />

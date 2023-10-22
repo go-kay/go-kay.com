@@ -14,14 +14,7 @@
 	}
 </script>
 
-<div>
-	<h1 class="mt-8">TODO:</h1>
-	<div class="flex space-x-4 items-center mt-8">
-		<input type="checkbox" class="scale-150" />
-		<h3>Comunity Page</h3>
-	</div>
-	<div class="flex space-x-4 items-center mt-2">
-		<input type="checkbox" class="scale-150" />
-		<h3>Housing page</h3>
-	</div>
-</div>
+<div>hi</div>
+<i class="fas fa-address-book" />
+
+<div class="h-[200vh]">Hello</div>

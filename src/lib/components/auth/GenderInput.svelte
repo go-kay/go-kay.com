@@ -27,6 +27,11 @@
 		on:click={() => (gender = 'female')}
 		value="female">Female</button
 	>
-	<input type="text" placeholder="custom" on:keydown={handleCustomInput} />
+	<input
+		type="text"
+		placeholder="custom"
+		on:keydown={handleCustomInput}
+		class="border rounded border-primary bg-background text-primary placeholder-primary-300 px-4 py-2"
+	/>
 	<input type="text" name="gender" value={gender} class="hidden" />
 </div>

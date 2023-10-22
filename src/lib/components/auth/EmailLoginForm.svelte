@@ -23,12 +23,12 @@
 		name="email"
 		type="email"
 		placeholder="Enter your email"
-		class="w-full h-12 border border-primary placeholder-primary text-primary"
+		class="w-full h-12 border border-primary placeholder-primary text-primary px-4 py-2 bg-background rounded outline-none"
 	/>
 	<button
 		type="submit"
 		disabled={loading !== undefined}
-		class="mt-2 p-2 bg-primary w-full h-12 rounded sm:hover:bg-primary-600 dark:sm:hover:bg-primary-400 transition-all relative"
+		class="mt-2 p-2 bg-primary w-full h-12 rounded sm:hover:bg-primary-500 dark:sm:hover:bg-primary-400 transition-all relative"
 	>
 		{#if isLoading}
 			<Spinner classes="w-6 h-6 border-background absolute m-auto left-0 right-0 top-0 bottom-0" />

@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1695908363712,
-      "tag": "0000_magenta_silver_centurion",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1696090920847,
-      "tag": "0001_sharp_shinko_yamashiro",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1696305990528,
-      "tag": "0002_gorgeous_quicksilver",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1696320811885,
-      "tag": "0003_small_invaders",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1696337858605,
-      "tag": "0004_gray_nekra",
+      "when": 1697987105959,
+      "tag": "0000_rare_the_initiative",
       "breakpoints": true
     }
   ]

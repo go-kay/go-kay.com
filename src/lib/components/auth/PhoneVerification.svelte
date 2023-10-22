@@ -2,10 +2,13 @@
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { toast } from '$lib/components/toast/toast';
+	import Spinner from '$lib/components/spinner/Spinner.svelte';
 
 	export let verified: boolean, phone: string, countryPhone: string;
-	let code: string;
+	let code: string,
+		loading = false;
 	const handleSubmit: SubmitFunction = ({ cancel }) => {
+		loading = true;
 		if (!code) {
 			cancel();
 			return toast({
@@ -21,6 +24,7 @@
 			});
 		}
 		return async ({ result, update }) => {
+			loading = false;
 			if (result.type === 'success') {
 				toast({
 					description: result.data!.message
@@ -41,7 +45,7 @@
 	<div class="flex space-x-4">
 		<input
 			disabled={verified}
-			class="border rounded border-primary w-full"
+			class="border rounded border-primary bg-background text-primary w-full px-4 py-2 placeholder-primary-400"
 			type="text"
 			bind:value={code}
 			maxlength="6"
@@ -51,13 +55,17 @@
 		<button
 			disabled={verified}
 			type="submit"
-			class="p-2 rounded bg-primary text-background sm:hover:bg-primary-500 h-12"
+			class="p-2 rounded min-w-[128px] w-32 {verified
+				? 'bg-background border-primary border'
+				: 'bg-primary sm:hover:bg-primary-500 text-background'} h-12"
 		>
 			{#if verified}
-				<div class="flex items-center">
-					<i class="fa fa-check text-background mr-2" />
-					<span class=" text-background">Verified!</span>
+				<div class="flex items-center justify-center">
+					<i class="fa fa-circle-check text-primary mr-2" />
+					<span class="text-primary">Verified</span>
 				</div>
+			{:else if loading}
+				<Spinner />
 			{:else}
 				Verify
 			{/if}
