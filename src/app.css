@@ -189,7 +189,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input, textarea {
-    @apply outline-primary placeholder-primary-300
+    @apply outline-primary placeholder-primary-300 caret-primary
 }
 
 *, *::before,*::after {

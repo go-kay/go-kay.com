@@ -8,10 +8,10 @@
 	import type { LayoutData } from './$types';
 	export let data: LayoutData;
 
-	let { user } = data;
+	let { user, topics } = data;
 
 	$: {
-		({ user } = data);
+		({ user, topics } = data);
 	}
 </script>
 
@@ -20,9 +20,11 @@
 	<main class="flex h-[calc(100vh-48px)]">
 		<aside class="hidden sm:flex">
 			<SideBarMain />
-			<SideBarSub {user} />
+			<SideBarSub {user} {topics} />
 		</aside>
-		<section class="px-4 sm:px-16 max-w-7xl mx-auto w-full overflow-y-scroll h-full max-h-full">
+		<section
+			class="px-4 sm:px-16 max-w-7xl mx-auto w-full overflow-y-scroll h-full max-h-full pb-8"
+		>
 			<slot />
 		</section>
 	</main>

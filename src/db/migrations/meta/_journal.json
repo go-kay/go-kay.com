@@ -8,6 +8,83 @@
       "when": 1697987105959,
       "tag": "0000_rare_the_initiative",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1698067486700,
+      "tag": "0001_regular_husk",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1698074450046,
+      "tag": "0002_overconfident_scream",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1698109793842,
+      "tag": "0003_salty_skrulls",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1698110047209,
+      "tag": "0004_early_gateway",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1698423483546,
+      "tag": "0005_nostalgic_mandarin",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1698423516741,
+      "tag": "0006_romantic_warlock",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1698423542937,
+      "tag": "0007_daily_the_hood",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1698423556813,
+      "tag": "0008_worthless_iron_monger",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1698423580169,
+      "tag": "0009_faulty_giant_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1698423755985,
+      "tag": "0010_fresh_amphibian",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1698509914164,
+      "tag": "0011_heavy_skullbuster",
+      "breakpoints": true
     }
   ]
 }

@@ -9,6 +9,8 @@
 	import { backgroundButton } from '$style/button/backgroundButton';
 	import { enhance } from '$app/forms';
 	import Spinner from '$lib/components/spinner/Spinner.svelte';
+	import { goto, invalidate } from '$app/navigation';
+	import type { ActionResult } from '@sveltejs/kit';
 
 	export let open: boolean;
 
@@ -69,6 +71,18 @@
 	const handleClickStar = () => {
 		starred = !starred;
 	};
+
+	const handleActionResult = async ({ result }: { result: ActionResult }) => {
+		if (result.type === 'failure') {
+			loading = false;
+			return toast({ type: 'error', description: result.data!.message as string });
+		}
+		toast({ type: 'success', title: 'Congratulation!', description: 'New topic was created!' });
+		close();
+		await invalidate('app:topics');
+		await goto(`/${name}`);
+		loading = false;
+	};
 </script>
 
 <SlideOver
@@ -81,19 +95,11 @@
 		class="flex flex-col text-sm"
 		slot="contents"
 		id="create-topic-form"
-		action="?/createTopic"
+		action="/?/createTopic"
 		method="POST"
 		use:enhance={() => {
 			loading = true;
-			return ({ result }) => {
-				if (result.status === 400) {
-					loading = false;
-					return toast({ type: 'error', description: result.data.message });
-				}
-				toast({ type: 'success', title: 'Congratulation!', description: 'New topic was created!' });
-				toggleCreateTopicSlideOver(false);
-				loading = false;
-			};
+			return handleActionResult;
 		}}
 	>
 		<label for="topic-name" class="w-fit text-primary">Topic name</label>

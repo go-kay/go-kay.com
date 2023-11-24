@@ -49,6 +49,7 @@
     "@types/pg": "^8.10.3",
     "@types/twilio": "^3.19.3",
     "autoprefixer": "^10.4.16",
+    "country-code-emoji": "^2.3.0",
     "drizzle-orm": "^0.28.6",
     "google-libphonenumber": "^3.2.33",
     "moment": "^2.29.4",

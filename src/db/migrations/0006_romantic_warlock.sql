@@ -1,0 +1,1 @@
+ALTER TABLE "topics" ALTER COLUMN "creator_id" SET DEFAULT gen_random_uuid();

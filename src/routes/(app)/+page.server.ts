@@ -6,6 +6,8 @@ import type { NewTopic } from '$db/schema';
 import { topics, users } from '$db/schema';
 import { eq } from 'drizzle-orm';
 import { toast } from '$lib/components/toast/toast';
+import getUser from '$db/api/users/getUser';
+import { toggleTopicStar } from '$db/api/topics/toggleTopicStar';
 
 export const actions: Actions = {
 	createTopic: async ({ request, locals: { getSession } }) => {
@@ -59,5 +61,29 @@ export const actions: Actions = {
 				message: "Something's wrong! Please contact our customer service!"
 			});
 		}
+	},
+	toggleStar: async ({ request, locals: { getSession } }) => {
+		const session = await getSession();
+		if (!session) {
+			return fail(400, {
+				message: 'Please sign-in to add a topic to favorites'
+			});
+		}
+		const user = await getUser({ id: session.user.id });
+		if (!user) {
+			return fail(400, {
+				message: 'Please sign-in to add a topic to favorites'
+			});
+		}
+
+		const data = await request.formData();
+		const userId = user.id;
+		const topicId = data.get('topicId');
+		if (!topicId) {
+			return fail(400, {
+				message: 'Invalid request. Please try again after refresh.'
+			});
+		}
+		await toggleTopicStar({ userId, topicId: topicId as string });
 	}
 };

@@ -25,7 +25,7 @@
 			</a>
 		</div>
 		<button on:click={handleSwitchDarkMode}>
-			<i class="fa fa-lightbulb dark:text-yellow-300" />
+			<i class="fa fa-lightbulb dark:text-yellow-300 text-primary" />
 		</button>
 	</div>
 </nav>
