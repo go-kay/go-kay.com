@@ -62,7 +62,7 @@ export const actions: Actions = {
 			});
 		}
 	},
-	toggleStar: async ({ request, locals: { getSession } }) => {
+	toggleStar: async ({ request, locals: { getSession, supabase } }) => {
 		const session = await getSession();
 		if (!session) {
 			return fail(400, {
